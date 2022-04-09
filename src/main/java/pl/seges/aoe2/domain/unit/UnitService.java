@@ -54,6 +54,7 @@ public class UnitService {
 
                     while (foodQuantity >= foodCost && woodQuantity >= woodCost && goldQuantity >= goldCost && stoneQuantity >= stoneCost){
                           if (0 == foodCost && 0 >= woodCost && 0 >= goldCost && 0 >= stoneCost){
+                              quantityOfUnit = 999;
                               break;
                           }
 
