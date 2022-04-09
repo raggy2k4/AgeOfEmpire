@@ -1,35 +1,58 @@
 package pl.seges.aoe2.domain.unit;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import pl.seges.aoe2.domain.cost.Cost;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
 @Data
 @EqualsAndHashCode(exclude = "id")
+@Entity
+@NoArgsConstructor
 public class Unit {
 
+    @Id
     int id;
     String name;
     String description;
     String expansion;
     String age;
-    String created_in;
+    @JsonProperty("created_in")
+    String createdIn;
+    @Embedded
     Cost cost;
-    int build_time;
-    int reload_time;
-    int attack_delay;
-    int movement_rate;
-    int line_of_sight;
-    int hit_points;
+    @JsonProperty("build_time")
+    int buildTime;
+    @JsonProperty("reload_time")
+    int reloadTime;
+    @JsonProperty("attack_delay")
+    int attackDelay;
+    @JsonProperty("movement_rate")
+    int movementRate;
+    @JsonProperty("line_of_sight")
+    int lineOfSight;
+    @JsonProperty("hit_points")
+    int hitPoints;
     String range;
     int attack;
     String armor;
-    List<String> attack_bonus;
-    List<String> armor_bonus;
-    int search_radius;
+    @JsonProperty("attack_bonus")
+    @ElementCollection
+    List<String> attackBonus;
+    @JsonProperty("armor_bonus")
+    @ElementCollection
+    List<String> armorBonus;
+    @JsonProperty("search_radius")
+    int searchRadius;
     String accuracy;
-    int blast_radius;
+    @JsonProperty("blast_radius")
+    int blastRadius;
 
 }
