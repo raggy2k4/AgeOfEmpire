@@ -18,6 +18,10 @@ public class UnitService {
 
         List<Unit> units = repository.findAll();
 
+        if (!name.isEmpty()){
+           units = units.stream().filter(unit -> unit.getName().equals(name)).collect(Collectors.toList());
+        }
+
         List<Unit> unitsFilteredByPossibleToProduct = units.stream()
                 .filter(unit -> unit.getCost().getFood() <= food)
                 .filter(unit -> unit.getCost().getWood() <= wood)
@@ -25,41 +29,43 @@ public class UnitService {
                 .filter(unit -> unit.getCost().getStone() <= stone)
                 .collect(Collectors.toList());
 
-        return calcUnitsToProducion(food, wood, gold, stone, unitsFilteredByPossibleToProduct);
+
+        return calcUnitsToProduction(food, wood, gold, stone, unitsFilteredByPossibleToProduct);
     }
 
-    private Map<String, Integer> calcUnitsToProducion(int food, int wood, int gold, int stone, List<Unit> units) {
+    private Map<String, Integer> calcUnitsToProduction(int food, int wood, int gold, int stone, List<Unit> units) {
 
         Map<String, Integer> unitsProductionPlant = new HashMap<>();
 
         units.stream()
                 .forEach(unit -> {
-                    int licznik = 0;
+                    int quantityOfUnit = 0;
 
-                    int foodL = food;
-                    int woodL = wood;
-                    int goldL = gold;
-                    int stoneL = stone;
+                    int foodQuantity = food;
+                    int woodQuantity = wood;
+                    int goldQuantity = gold;
+                    int stoneQuantity = stone;
 
                     int foodCost = unit.getCost().getFood();
                     int woodCost = unit.getCost().getWood();
                     int goldCost = unit.getCost().getGold();
                     int stoneCost = unit.getCost().getStone();
 
-                    while (true){
-                        if (foodL >= foodCost && woodL >= woodCost && goldL >= goldCost && stoneL >= stoneCost){
-                            licznik++;
-                            foodL = foodL - foodCost;
-                            woodL = woodL - woodCost;
-                            goldL = goldL - goldCost;
-                            stoneL = stoneL - stoneCost;
-                        } else {
-                            unitsProductionPlant.put(unit.getName(), licznik);
-                            break;
-                        }
-                    }
-                });
 
+                    while (foodQuantity >= foodCost && woodQuantity >= woodCost && goldQuantity >= goldCost && stoneQuantity >= stoneCost){
+                          if (0 == foodCost && 0 >= woodCost && 0 >= goldCost && 0 >= stoneCost){
+                              break;
+                          }
+
+                            quantityOfUnit++;
+                            foodQuantity = foodQuantity - foodCost;
+                            woodQuantity = woodQuantity - woodCost;
+                            goldQuantity = goldQuantity - goldCost;
+                            stoneQuantity = stoneQuantity - stoneCost;
+                    }
+
+                    unitsProductionPlant.put(unit.getName(), quantityOfUnit);
+                });
         return unitsProductionPlant;
     }
 }

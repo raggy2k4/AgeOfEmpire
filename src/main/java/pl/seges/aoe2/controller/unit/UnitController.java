@@ -24,7 +24,7 @@ public class UnitController {
         @RequestParam(name = "wood", required = false, defaultValue = "0") Integer wood,
         @RequestParam(name = "gold", required = false, defaultValue = "0") Integer gold,
         @RequestParam(name = "stone", required = false, defaultValue = "0") Integer stone,
-        @RequestParam(name = "name", required = false, defaultValue = "blank") String name
+        @RequestParam(name = "name", required = false, defaultValue = "") String name
     )
     {
         return ResponseEntity.ok(unitService.getData(food, wood, gold, stone, name));
