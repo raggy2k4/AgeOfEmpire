@@ -7,12 +7,12 @@ import lombok.Data;
 public class Cost {
 
     @JsonProperty("Wood")
-    int wood;
+    private int wood;
     @JsonProperty("Food")
-    int food;
+    private int food;
     @JsonProperty("Stone")
-    int stone;
+    private int stone;
     @JsonProperty("Gold")
-    int gold;
+    private int gold;
 
 }

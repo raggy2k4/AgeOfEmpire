@@ -19,40 +19,40 @@ import java.util.List;
 public class Unit {
 
     @Id
-    int id;
-    String name;
-    String description;
-    String expansion;
-    String age;
+    private int id;
+    private String name;
+    private String description;
+    private String expansion;
+    private String age;
     @JsonProperty("created_in")
-    String createdIn;
+    private String createdIn;
     @Embedded
-    Cost cost;
+    private Cost cost;
     @JsonProperty("build_time")
-    int buildTime;
+    private int buildTime;
     @JsonProperty("reload_time")
-    int reloadTime;
+    private int reloadTime;
     @JsonProperty("attack_delay")
-    int attackDelay;
+    private int attackDelay;
     @JsonProperty("movement_rate")
-    int movementRate;
+    private int movementRate;
     @JsonProperty("line_of_sight")
-    int lineOfSight;
+    private int lineOfSight;
     @JsonProperty("hit_points")
-    int hitPoints;
-    String range;
-    int attack;
-    String armor;
+    private int hitPoints;
+    private String range;
+    private int attack;
+    private String armor;
     @JsonProperty("attack_bonus")
     @ElementCollection
-    List<String> attackBonus;
+    private List<String> attackBonus;
     @JsonProperty("armor_bonus")
     @ElementCollection
-    List<String> armorBonus;
+    private List<String> armorBonus;
     @JsonProperty("search_radius")
-    int searchRadius;
-    String accuracy;
+    private int searchRadius;
+    private String accuracy;
     @JsonProperty("blast_radius")
-    int blastRadius;
+    private  int blastRadius;
 
 }
