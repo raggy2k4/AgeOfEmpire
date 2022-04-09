@@ -1,9 +1,13 @@
 package pl.seges.aoe2.domain.unit;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import pl.seges.aoe2.domain.cost.Cost;
 
 import java.util.List;
 
+@Data
+@EqualsAndHashCode(exclude = "id")
 public class Unit {
 
     int id;
